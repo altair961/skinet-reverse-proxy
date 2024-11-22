@@ -1,6 +1,6 @@
-name: skinet_reverse_proxy
+name: skinet-reverse-proxy
 
-run-name: skinet_reverse_proxy 🚀
+run-name: skinet-reverse-proxy 🚀
 
 # Controls when the workflow will run
 on:
@@ -29,7 +29,7 @@ jobs:
 
       - name: Build the Docker image
         working-directory: ${{ github.workspace }}
-        run: docker build . -t altair961/skinet_reverse_proxy:latest
+        run: docker build . -t altair961/skinet-reverse-proxy:latest
 
       - name: Log into Docker Hub
         uses: docker/login-action@v3
@@ -38,7 +38,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push the images to Docker Hub
-        run: docker push altair961/skinet_reverse_proxy
+        run: docker push altair961/skinet-reverse-proxy
   # This is a job called "deploy"
   deploy:
     runs-on: ubuntu-latest
@@ -54,4 +54,4 @@ jobs:
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/skinet-reverse-proxy:latest
             docker stop skinet-reverse-proxy || true
             docker rm skinet-reverse-proxy || true
-            docker run -d -p 80:8080 --name skinet-api ${{ secrets.DOCKERHUB_USERNAME }}/skinet-reverse-proxy:latest
+            docker run -d -p 80:8080 --name skinet-reverse-proxy ${{ secrets.DOCKERHUB_USERNAME }}/skinet-reverse-proxy:latest
