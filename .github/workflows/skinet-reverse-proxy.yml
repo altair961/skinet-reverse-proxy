@@ -38,7 +38,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push the images to Docker Hub
-        run: docker push altair961/skinet-reverse-proxy
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/skinet-reverse-proxy
   # This is a job called "deploy"
   deploy:
     runs-on: ubuntu-latest
