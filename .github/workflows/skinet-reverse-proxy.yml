@@ -51,6 +51,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: | 
+          docker rmi images | grep ${{ secrets.DOCKERHUB_USERNAME }}/skinet-reverse-proxy
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/skinet-reverse-proxy:latest
             docker stop skinet-reverse-proxy || true
             docker rm skinet-reverse-proxy || true
