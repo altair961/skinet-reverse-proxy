@@ -1,10 +1,9 @@
-FROM nginx:1.24-alpine3.17-slim
+FROM ubuntu:latest
 
-# Copy everything in the current working directory to the default nginx folder
-COPY . /usr/share/nginx/html
+RUN apt-get -y update && apt-get -y install nginx
 
-# Expose port 80 for HTTP traffic
+COPY content/index.html /var/www/html/index.nginx-debian.html
+
 EXPOSE 80
 
-# Add a volume to persist data
-VOLUME /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
