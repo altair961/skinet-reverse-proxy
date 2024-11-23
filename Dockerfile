@@ -1,6 +1,4 @@
-FROM ubuntu:latest
-
-RUN apt-get -y update && apt-get -y install nginx
+FROM nginx:1.10.1-alpine
 
 COPY content/index.html /var/www/html/index.nginx-debian.html
 
